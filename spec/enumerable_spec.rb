@@ -65,7 +65,59 @@ describe Enumerable do
   end
 
   describe "#my_all" do
-    
+
+
+    it 'should return true when the length of all the words in the array is equal or bigger than 3' do
+      expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
+    end
+
+    it 'should return false when not all words have length equal or bigger than 3' do
+      expect(%w[ant be cat].my_all? { |word| word.length >= 3 }).to eql(false)
+    end
+
+    it "should return true if all of the words in array have character 't', so they matches the regex " do
+      expect(%w[ant tiger cat].my_all?(/t/)).to eql(true)
+    end
+
+    it "should false true if all of the words in array don't have character 't', so they matches the regex " do
+      expect(%w[ant lion cat].my_all?(/t/)).to eql(false)
+    end
+
+    it 'should return true if all of the element in array are instance of Numeric class' do
+      expect([1, 2i, 3.14].my_all?(Numeric)).to eql(true)
+    end
+
+    it 'should return false if not all of the element in array are instance of Numeric class' do
+      expect([1, 'lion', 3.14].my_all?(Numeric)).to eql(false)
+    end
+
+    it 'should return false if there is at least one nil or false in the array' do
+      expect([false, true, 99].my_all?).to eql(false)
+    end
+
+    it 'should return false if there is at least one nil or false in the array' do
+      expect([nil, 11, 99].my_all?).to eql(false)
+    end
+
+    it 'should return true if there is no nil or false in the array' do
+      expect([99, true, "new"].my_all?).to eql(true)
+    end
+
+    it 'should return true if all of the elements in array are equal to 7' do
+      expect([7, 7, 7, 7, 7].my_all?(7)).to eql(true)
+    end
+
+    it 'should return false if there is at least one element in the array that is different than 7' do
+      expect([7, 7, 7, 3, 7].my_all?(7)).to eql(false)
+    end
+
+    it "should return true if all of the strings in the array is equal to 'adam' " do
+      expect(%w[adam adam adam].my_all?('adam')).to eql(true)
+    end
+
+    it "should return false if there is at least one string in the array that is different than 'adam' " do
+      expect(%w[adam adam madam].my_all?('adam')).to eql(false)
+    end
   end
 
   describe "#my_any" do
