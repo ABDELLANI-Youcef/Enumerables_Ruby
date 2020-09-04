@@ -47,7 +47,21 @@ describe Enumerable do
   end
 
   describe "#my_select" do
-    
+    it "should return enumerator" do
+      expect((1..5).my_select).to be_an_instance_of Enumerator
+    end
+
+    it "should return array containing the numbers smaller than 5" do
+      expect([1,4,2,6,7,12,2,6].my_select{|x| x<5} ).to eql([1,4,2,2])
+    end
+
+    it "should return the even numbers in the range 1 to 5" do
+      expect((1..5).my_select{|x| x%2==0} ).to eql([2,4])
+    end
+
+    it "shoult return an array containing the strings that are less than 4" do
+      expect(%w[ramin and youcef are working here].my_select {|x| x.size <4}).to eql(["and","are"])
+    end
   end
 
   describe "#my_all" do
