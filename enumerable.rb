@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+# This is custom Enumerable module
 module Enumerable
   def my_each
     return to_enum unless block_given?
@@ -104,6 +107,7 @@ module Enumerable
   end
 end
 
+# This is the continuation of Enumerable class
 module Enumerable
   def my_count(input = nil)
     var = to_a
@@ -182,4 +186,4 @@ end
 
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/MethodLength,Metrics/AbcSize
