@@ -180,8 +180,6 @@ def multiply_els(arr)
   arr.my_inject(:*)
 end
 
-{ '1'=>1,'2'=>2}.each {|x| print x}
-
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/MethodLength

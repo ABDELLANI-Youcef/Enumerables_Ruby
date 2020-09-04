@@ -277,6 +277,32 @@ describe Enumerable do
   end
 
   describe "#my_inject" do
-    
+    it "should return the sum of all the numbers in the range 5 to 10 which is 45" do
+      expect((5..10).my_inject { |sum, n| sum + n }).to eql 45
+    end
+
+    it "should return the sum of all the numbers in the range 5 to 10 + 2 which is 47" do
+      expect((5..10).my_inject(2) { |sum, n| sum + n }).to eql 47
+    end
+
+    it "should return the product of all the numbers in the range 5 to 10 which is 151200" do
+      expect((5..10).my_inject(:*)).to eql 151200
+    end
+
+    it "should return the product of all the numbers in the range 5 to 10 multiplied by 2 which is 302400" do
+      expect((5..10).my_inject(2,:*)).to eql 302400
+    end
+
+    it "should return the product of all the numbers in the array which is 151200" do
+      expect([5,6,7,8,9,10].my_inject(:*)).to eql 151200
+    end
+
+    it "should return the sum of the element in the array" do
+      expect([5,7,6,8,9,10].my_inject { |sum, n| sum + n }).to eql 45
+    end
+
+    it "should raise error when neither block nor argument are given" do
+      expect{[1,2,3,4].my_inject}.to raise_error(LocalJumpError)
+    end
   end
 end
