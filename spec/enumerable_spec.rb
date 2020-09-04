@@ -65,8 +65,6 @@ describe Enumerable do
   end
 
   describe "#my_all" do
-
-
     it 'should return true when the length of all the words in the array is equal or bigger than 3' do
       expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
     end
@@ -79,7 +77,7 @@ describe Enumerable do
       expect(%w[ant tiger cat].my_all?(/t/)).to eql(true)
     end
 
-    it "should false true if all of the words in array don't have character 't', so they matches the regex " do
+    it "should return false if all of the words in array don't have character 't', so it doesn't match the regex " do
       expect(%w[ant lion cat].my_all?(/t/)).to eql(false)
     end
 
@@ -121,7 +119,53 @@ describe Enumerable do
   end
 
   describe "#my_any" do
-    
+    it 'should return true when at least length of one  words in the array is equal or bigger than 3' do
+      expect(%w[ant bear cat].my_any? { |word| word.length >= 3 }).to eql(true)
+    end
+
+    it 'should return false when none of the words have length equal or bigger than 3' do
+      expect(%w[an I we].my_any? { |word| word.length >= 3 }).to eql(false)
+    end
+
+    it "should return true if at least one of the words in array has character 't', so it matches the regex " do
+      expect(%w[ant tiger cat].my_any?(/t/)).to eql(true)
+    end
+
+    it "should return false if no word in array have character 't', so they all don't match the regex " do
+      expect(%w[I am superman].my_any?(/t/)).to eql(false)
+    end
+
+    it 'should return true if at least one of the element in array is instance of Numeric class' do
+      expect([1, 2i, 3.14].my_any?(Numeric)).to eql(true)
+    end
+
+    it 'should return false if none of the element in array is instance of Numeric class' do
+      expect([true, 'lion', nil].my_any?(Numeric)).to eql(false)
+    end
+
+    it 'should return false if each element in the array is nil or false' do
+      expect([false, nil, false].my_any?).to eql(false)
+    end
+
+    it 'should return true if at least one element in the array is neither nil nor false' do
+      expect([nil, false, "new"].my_any?).to eql(true)
+    end
+
+    it 'should return true if at least one of the elements in array is equal to 7' do
+      expect([7, 7, 7, 79, 4].my_any?(7)).to eql(true)
+    end
+
+    it 'should return false if there is no element in the array that is equal to 7' do
+      expect([1, 2, 4, 3, "turtle"].my_any?(7)).to eql(false)
+    end
+
+    it "should return true if at least one of the strings in the array is equal to 'adam' " do
+      expect(%w[adam adam saddam].my_any?('adam')).to eql(true)
+    end
+
+    it "should return false if there is at no string in the array that is equal tp 'adam' " do
+      expect(%w[khadam sadam madam].my_any?('adam')).to eql(false)
+    end
   end
 
   describe "#my_none" do
