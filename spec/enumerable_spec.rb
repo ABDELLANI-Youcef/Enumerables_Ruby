@@ -227,7 +227,31 @@ describe Enumerable do
   end
 
   describe "#my_count" do
-    
+    let(:arr) {[1, 2, 9, 7, 11, 23, 8]}
+    it "should return the number of the elements in the array which is 7" do
+      expect(arr.my_count).to eql(7)
+    end
+
+    it "should return the number of the element in the range 1 to 10 that is equal to 10" do
+      expect((1..10).my_count).to eql(10)
+    end
+
+    it "should return the number of the element equal to 9 in the array which is 1" do
+      expect(arr.my_count(9)).to eql(1)
+    end
+
+    it "should return the number of elements that are odd in the array which is 5"do
+      expect(arr.my_count(&:odd?)).to eql(5)
+    end
+
+    it "should return the number of elements that are even in the array which is 2"do
+      expect(arr.my_count(&:even?)).to eql(2)
+    end
+
+    it "should retur the number of element that are less than 8 which is 4" do
+      expect(arr.my_count {|x| x<=8}).to eql(4)
+    end
+
   end
 
   describe "#my_map" do
