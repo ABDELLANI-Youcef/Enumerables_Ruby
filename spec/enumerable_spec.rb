@@ -169,7 +169,61 @@ describe Enumerable do
   end
 
   describe "#my_none" do
-    
+    it 'should return true if none of the elements in the array has length equal to or bigger than 5' do
+      expect(%w[ant bear cat].my_none? { |word| word.length >= 5 }).to eql(true)
+    end
+
+    it 'should return false when at least one element in the array has length equal or bigger than 2' do
+      expect(%w[ant be cat].my_none? { |word| word.length >= 2 }).to eql(false)
+    end
+
+    it "should return true if none of the words in array has character 't', so they doesn't matches the regex " do
+      expect(%w[bee lion jaguar].my_none?(/t/)).to eql(true)
+    end
+
+    it "should return false when at least one word in the array has character 't', so that word matches the regex " do
+      expect(%w[ant lion cat].my_none?(/t/)).to eql(false)
+    end
+
+    it 'should return true if none of the elements in the array are instance of Float class' do
+      expect([1, -2, 30].my_none?(Float)).to eql(true)
+    end
+
+    it 'should return false if at least one element in the array is an instance of Float class' do
+      expect([1, 'lion', 3.14].my_none?(Float)).to eql(false)
+    end
+
+    it 'should return true if all elements in the array are nil or false' do
+      expect([false, nil, false].my_none?).to eql(true)
+    end
+
+    it 'should return false if there is at least one element that is not nil or false in the array' do
+      expect([nil, 11, 99].my_none?).to eql(false)
+    end
+
+    it 'should return true if all of the elements in array are different than 7' do
+      expect([2, 4, 6, 3, 5].my_none?(7)).to eql(true)
+    end
+
+    it 'should return false if there is at least one element in the array that is equal to 7' do
+      expect([7, 1, 2, 3, 7].my_none?(7)).to eql(false)
+    end
+
+    it "should return true if none of the strings in the array is equal to 'adam' " do
+      expect(%w[madam sir gentleman].my_none?('adam')).to eql(true)
+    end
+
+    it "should return false if there is at least one string in the array that is equal to 'adam' " do
+      expect(%w[gentleman adam madam].my_none?('adam')).to eql(false)
+    end
+
+    it 'should return true if empty array is given' do
+      expect([].my_none?).to eql(true)
+    end
+
+    it 'should return true if there is at least one nil or true in the array' do
+      expect([nil].my_none?).to eql(true)
+    end
   end
 
   describe "#my_count" do
