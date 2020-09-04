@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 require_relative '../enumerable'
-# rubocop:disable Metrics/BlockLength,Layout/LineLength
+# rubocop:disable Layout/LineLength
 
 describe Enumerable do
   describe '#my_each' do
@@ -307,4 +305,4 @@ describe Enumerable do
   end
 end
 
-# rubocop:enable Metrics/BlockLength,Layout/LineLength
+# rubocop:enable Layout/LineLength
