@@ -255,7 +255,25 @@ describe Enumerable do
   end
 
   describe "#my_map" do
-    
+    it 'should return the square of the elements in the given range as an array' do
+      expect((1..4).my_map { |i| i * i }).to eql([1,4,9,16])
+    end
+
+    it 'should return the instance of Enumerator which no block is given' do
+      expect((1..4).my_map).to be_an_instance_of Enumerator
+    end
+
+    it 'should return the array which the elements is the mapping of the string is given inside block' do
+      expect((1..4).my_map { 'cat' }).to eql(["cat", "cat", "cat", "cat"])
+    end
+
+    it 'should return the square of the elements in the given array as an array' do
+      expect([1, 2, 7, 4, 5].my_map { |x| x * x }).to eql([1, 4, 49, 16, 25])
+    end
+
+    it 'should return element in the hash' do
+      expect({ "rice" => "protein", "apple" => "fruit" }.my_map{ |k,v| k.to_s + " is a " + v.to_s }).to eql(["rice is a protein", 'apple is a fruit'])
+    end
   end
 
   describe "#my_inject" do
